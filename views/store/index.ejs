@@ -1,0 +1,69 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="site-wrap">
+        <%- include ('../partials/nav') %>
+        <main class="home-page-main">
+            <section class="hero-section">
+                <div class="hero-content">
+
+                  
+                    <h1 class="hero-title">Welcome to Airbnb</h1>
+                    <p class="hero-subtitle">Discover unique homes and unforgettable experiences around the world</p>
+                    <div class="hero-divider"></div>
+                </div>
+            </section>
+            <section class="featured-listings-section">
+                <h2 class="featured-listings-title">Featured Homes</h2>
+                <p class="featured-listings-desc">Handpicked properties just for you</p>
+                
+                <ul class="featured-grid" id="listings">
+                    <% registeredHomes.forEach(function(home) { %>
+                        <li class="featured-card">
+                            <div class="featured-card-image-wrapper">
+                                <% if (home.photo) { %>
+                                    <img 
+                                        src="<%= home.photo %>" 
+                                        alt="<%= home.houseName %>" 
+                                        class="featured-card-image"
+                                    />
+                                <% } else { %>
+                                    <div class="featured-card-image-placeholder">📸 No Image</div>
+                                <% } %>
+                                <div class="featured-card-badge">Featured</div>
+                            </div>
+
+                            <div class="featured-card-content">
+                                <h3 class="featured-card-title"><%= home.houseName %></h3>
+
+                                <% if (home.location || home.locationName) { %>
+                                    <p class="featured-card-location">
+                                        📍 <%= home.locationName %> <% if (home.location) { %><span>, <%= home.location %></span><% } %>
+                                    </p>
+                                <% } %>
+
+                                <% if (home.description) { %>
+                                    <p class="featured-card-desc"><%= home.description %></p>
+                                <% } %>
+
+                                <div class="featured-card-footer">
+                                    <div class="featured-card-meta">
+                                        <div class="featured-card-price">
+                                            <span class="featured-price-amount">₹<%= home.pricePerNight %></span>
+                                            <span class="featured-price-label">/night</span>
+                                        </div>
+                                        <% if (home.rating) { %>
+                                            <div class="featured-card-rating">⭐ <%= home.rating %>/5</div>
+                                        <% } %>
+                                    </div>
+                                    <div class="featured-card-action">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

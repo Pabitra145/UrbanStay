@@ -1,0 +1,135 @@
+<%- include ('../partials/header') %>
+<body>
+  <div class="site-wrap">
+    <%- include ('../partials/nav') %>
+    <main class="form-page-main">
+      <section class="form-container">
+        <div class="form-card">
+
+
+          <div class="form-header">
+            <h1 class="form-title"><%= editing ? 'Edit Your Home' : 'Add a New Home' %></h1>
+            <p class="form-subtitle"><%= editing ? 'Update your property details' : 'List your property on Airbnb' %></p>
+          </div>
+          <form action="/host/<%=editing ? 'edit-home' : 'add-home'%>" method="POST" class="home-form" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<%= editing ? home._id : '' %>">
+
+            <!-- House Name -->
+            <div class="form-group">
+              <label for="houseName" class="form-label">House Name</label>
+              <input 
+                type="text" 
+                id="houseName" 
+                name="houseName" 
+                class="form-input"
+                placeholder="e.g., Cozy Beach Apartment"
+                value="<%= editing ? home.houseName : '' %>"
+                required
+              />
+              <span class="form-input-emoji">🏠</span>
+            </div>
+
+            <!-- Photo URL -->
+            <div class="form-group">
+              <label for="photo" class="form-label">Photo</label>
+              <input 
+                type="file" 
+                name="photo"
+                accept="image/*"
+                class="form-input"
+              />
+              <span class="form-input-emoji">📸</span>
+            </div>
+            <div class="form-section-title">Location</div>
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="locationName" class="form-label">City / Area</label>
+                <input 
+                  type="text" 
+                  id="locationName" 
+                  name="locationName" 
+                  class="form-input"
+                  placeholder="e.g., Mumbai"
+                  value="<%= editing ? home.locationName : '' %>"
+                />
+                <span class="form-input-emoji">📍</span>
+              </div>
+
+              <div class="form-group form-group-half">
+                <label for="location" class="form-label">State, Country</label>
+                <input 
+                  type="text" 
+                  id="location" 
+                  name="location" 
+                  class="form-input"
+                  placeholder="e.g., Maharashtra, India"
+                  value="<%= editing ? home.location : '' %>"
+                />
+                <span class="form-input-emoji">🌍</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label for="description" class="form-label">Description</label>
+              <textarea 
+                id="description" 
+                name="description" 
+                class="form-textarea"
+                rows="4"
+                placeholder="Describe your home, amenities, and what makes it special..."
+              ><%= editing ? home.description : '' %></textarea>
+            </div>
+
+            <!-- Pricing & Rating Section -->
+            <div class="form-section-title">Pricing & Rating</div>
+            
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="pricePerNight" class="form-label">Price Per Night</label>
+                <div class="form-input-group">
+                  <span class="form-input-prefix">₹</span>
+                  <input 
+                    type="number" 
+                    id="pricePerNight" 
+                    name="pricePerNight" 
+                    class="form-input form-input-with-prefix"
+                    placeholder="2500"
+                    required
+                    value="<%= editing ? home.pricePerNight : '' %>"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group form-group-half">
+                <label for="rating" class="form-label">Rating (1 - 5)</label>
+                <div class="form-input-group">
+                  <input 
+                    type="number" 
+                    id="rating" 
+                    name="rating" 
+                    class="form-input"
+                    min="1" 
+                    max="5"
+                    placeholder="4.5"
+                    value="<%= editing ? home.rating : '' %>"
+                  />
+                  <span class="form-input-suffix">⭐</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button type="submit" class="form-submit-btn">
+                <span class="submit-icon"><%= editing ? '✏️' : '➕' %></span>
+                <%= editing ? 'Update Home' : 'Add Home' %>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

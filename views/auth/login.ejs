@@ -1,0 +1,54 @@
+<%- include ('../partials/header') %>
+<body>
+  <div class="site-wrap">
+    <%- include ('../partials/nav') %>
+    <main class="auth-page-main">
+      <div class="auth-container">
+        <div class="auth-card">
+
+          
+          <div class="auth-header">
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Sign in to your Airbnb account</p>
+          </div>
+
+          <form action="/login" method="POST" class="auth-form">
+            <div class="auth-form-group">
+              <label for="email" class="auth-label">Email Address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="auth-input" 
+                placeholder="you@example.com"
+                value="<%= oldInput.email ? oldInput.email : '' %>"
+                required
+              />
+              <span class="auth-input-icon">✉️</span>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="password" class="auth-label">Password</label>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="auth-input" 
+                placeholder="••••••••"
+                required
+              />
+              <span class="auth-input-icon">🔒</span>
+            </div>
+
+            <button type="submit" class="auth-submit-btn">Sign In</button>
+          </form>
+
+          <div class="auth-footer">
+            <p class="auth-signup-link">Don't have an account? <a href="/signup">Create one</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

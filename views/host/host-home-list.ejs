@@ -1,0 +1,63 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="site-wrap">
+        <%- include ('../partials/nav') %>
+        <main class="host-listings-main">
+            <section class="host-header">
+                <h1 class="host-title">Your Listings</h1>
+                <p class="host-subtitle">Manage and monitor your properties</p>
+            </section>
+
+            <section class="host-listings-container">
+                <h2 class="host-section-title">Your Available Homes</h2>
+                
+                <ul class="host-listings-grid" id="listings">
+                    <% registeredHomes.forEach(function(home) { %>
+                        <li class="host-home-card">
+                            <div class="host-home-image-wrapper">
+                                <% if (home.photo) { %>
+                                    <img 
+                                        src="<%= home.photo %>" 
+                                        alt="<%= home.houseName %>" 
+                                        class="host-home-image"
+                                    />
+                                <% } else { %>
+                                    <div class="host-home-image-placeholder">📸 No Image</div>
+                                <% } %>
+                            </div>
+
+                            <div class="host-home-content">
+                                <h3 class="host-home-title"><%= home.houseName %></h3>
+                                
+                                <% if (home.location || home.locationName) { %>
+                                    <p class="host-home-location">
+                                        📍 <%= home.locationName %> <% if (home.location) { %><span>, <%= home.location %></span><% } %>
+                                    </p>
+                                <% } %>
+
+                                <% if (home.description) { %>
+                                    <p class="host-home-description"><%= home.description %></p>
+                                <% } %>
+
+                                <div class="host-home-info">
+                                    <span class="host-price">💲 ₹<%= home.pricePerNight %>/night</span>
+                                    <% if (home.rating) { %>
+                                        <span class="host-rating">⭐ <%= home.rating %> / 5</span>
+                                    <% } %>
+                                </div>
+
+                                <div class="host-home-actions">
+                                    <a href="/host/edit-home/<%=home.id%>?editing=true" class="btn-edit">✏️ Edit</a>
+                                    <form action="/host/delete-home/<%=home._id%>" method="POST" class="delete-form">
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Are you sure?');">🗑️ Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

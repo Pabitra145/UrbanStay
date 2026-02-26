@@ -1,0 +1,50 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="site-wrap">
+        <%- include ('../partials/nav') %>
+        <main>
+            <section class="hero card">
+                <div>
+
+
+                    <div class="title">Welcome to Airbnb</div>
+                    <div class="subtitle muted">A minimal demo of listing and adding homes.</div>
+                </div>
+            <section class="card p-sm">
+                <h2 class="mb-sm">Available Listings</h2>
+                <ul class="list" id="listings">
+                    <% favouriteHomes.forEach(function(home) { %>
+    <li class="list-item card mb-sm">
+        <% if (home.photo) { %>
+        <img 
+          src="<%= home.photo %>" 
+          alt="<%= home.houseName %>" 
+          style="width:100%; max-height:200px; object-fit:cover; border-radius:8px;"
+        />
+      <% } %>
+      <h3><%= home.houseName %></h3>
+      <% if (home.location || home.locationName) { %>
+        <p class="muted">
+          📍 <%= home.locationName %> <%= home.location ? `, ${home.location}` : '' %>
+        </p>
+      <% } %>
+      <% if (home.description) { %>
+        <p><%= home.description %></p>
+      <% } %>
+      <div class="muted">
+        💲 <strong><%= home.pricePerNight %></strong> / night
+      </div>
+      <% if (home.rating) { %>
+        <div class="muted">
+          ⭐ Rating: <%= home.rating %> / 5
+        </div>
+      <% } %>
+      </a>
+    </li>
+    <% }) %>
+</ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

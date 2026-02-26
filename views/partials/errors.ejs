@@ -1,0 +1,16 @@
+<% if (errors.length > 0) { %>
+    <div class="error-alert">
+        <div class="error-alert-header">
+            <span class="error-alert-icon">⚠️</span>
+            <span class="error-alert-title">Validation Errors</span>
+        </div>
+        <div class="error-alert-list">
+            <% errors.forEach(error => { %>
+                <li class="error-alert-item">
+                    <span class="error-alert-dot">•</span>
+                    <%= error %>
+                </li>
+            <% }) %>
+        </div>
+    </div>
+<% } %>

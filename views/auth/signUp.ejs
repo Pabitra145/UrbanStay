@@ -1,0 +1,132 @@
+<%- include ('../partials/header') %>
+<body>
+  <div class="site-wrap">
+    <%- include ('../partials/nav') %>
+    <main class="auth-page-main">
+      <div class="auth-container">
+        <div class="auth-card auth-card-signup">
+
+          
+          <div class="auth-header">
+            <h1 class="auth-title">Create Your Account</h1>
+            <p class="auth-subtitle">Join millions of hosts and guests worldwide</p>
+          </div>
+
+          <form action="/signUp" method="POST" class="auth-form">
+            <div class="auth-form-row">
+              <div class="auth-form-group auth-form-group-half">
+                <label for="firstName" class="auth-label">First Name</label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  class="auth-input" 
+                  placeholder="John"
+                  value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                  required
+                />
+                <span class="auth-input-icon">👤</span>
+              </div>
+
+              <div class="auth-form-group auth-form-group-half">
+                <label for="lastName" class="auth-label">Last Name</label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName" 
+                  class="auth-input" 
+                  placeholder="Doe"
+                  value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                  required
+                />
+                <span class="auth-input-icon">👤</span>
+              </div>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="email" class="auth-label">Email Address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="auth-input" 
+                placeholder="you@example.com"
+                value="<%= oldInput.email ? oldInput.email : '' %>"
+                required
+              />
+              <span class="auth-input-icon">✉️</span>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="password" class="auth-label">Password</label>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="auth-input" 
+                placeholder="••••••••"
+                required
+              />
+              <span class="auth-input-icon">🔒</span>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="confirmPassword" class="auth-label">Confirm Password</label>
+              <input 
+                type="password"
+                id="confirmPassword" 
+                name="confirmPassword" 
+                class="auth-input" 
+                placeholder="••••••••"
+                required
+              />
+              <span class="auth-input-icon">🔒</span>
+            </div>
+
+            <div class="auth-user-type">
+              <p class="auth-radio-title">Account Type</p>
+              <div class="auth-radio-group">
+                <div class="auth-radio-option">
+                  <input 
+                    type="radio" 
+                    id="guest" 
+                    name="userType" 
+                    value="guest"
+                    class="auth-radio-input"
+                    checked="<%= oldInput.userType === 'guest' %>"
+                  />
+                  <label for="guest" class="auth-radio-label">
+                    <span class="auth-radio-icon">🏠</span>
+                    <span class="auth-radio-text">Guest</span>
+                  </label>
+                </div>
+
+                <div class="auth-radio-option">
+                  <input 
+                    type="radio" 
+                    id="host" 
+                    name="userType" 
+                    value="host"
+                    class="auth-radio-input"
+                    checked="<%= oldInput.userType === 'host' %>"
+                  />
+                  <label for="host" class="auth-radio-label">
+                    <span class="auth-radio-icon">🏢</span>
+                    <span class="auth-radio-text">Host</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="auth-submit-btn">Create Account</button>
+          </form>
+
+          <div class="auth-footer">
+            <p class="auth-signin-link">Already have an account? <a href="/login">Sign in</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

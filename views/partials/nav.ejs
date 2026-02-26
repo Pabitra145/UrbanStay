@@ -1,0 +1,36 @@
+<nav class="airbnb-navbar" role="navigation" aria-label="Main navigation">
+	<div class="navbar-brand">
+		<a href="/" class="navbar-logo-link">
+			<span class="navbar-logo-icon" aria-hidden="true"></span>
+			<span class="navbar-logo-text">Airbnb</span>
+		</a>
+	</div>
+
+	<div class="navbar-links">
+		<% if(isLoggedIn) { %>
+			<% if (user && user.userType === 'guest') { %>
+				<a href="/homes" class="navbar-link navbar-link-primary">Homelist</a>
+				<a href="/" class="navbar-link navbar-link-primary">Bookings</a>
+				<a href="/favourites" class="navbar-link navbar-link-primary">Favourite</a>
+			<% } else { %>
+				<a href="/host/host-home-list" class="navbar-link navbar-link-primary">Host Homes</a>
+				<a href="/host/add-home" class="navbar-btn navbar-btn-add">+ Add Home</a>
+			<% } %>
+		<% } %>
+	</div>
+
+	<div class="navbar-actions">
+		<% if(!isLoggedIn) { %>
+			<form action="/login" method="POST" style="display: inline;">
+				<button type="submit" class="navbar-btn navbar-btn-login">Login</button>
+			</form>
+			<form action="/signup" method="POST" style="display: inline;">
+				<button type="submit" class="navbar-btn navbar-btn-signup">Sign Up</button>
+			</form>
+		<% } else { %>
+			<form action="/logout" method="POST" style="display: inline;">
+				<button type="submit" class="navbar-btn navbar-btn-logout">Logout</button>
+			</form>
+		<% } %>
+	</div>
+</nav>

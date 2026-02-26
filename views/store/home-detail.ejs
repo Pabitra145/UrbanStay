@@ -1,0 +1,62 @@
+<%- include ('../partials/header') %>
+<body>
+    <div class="site-wrap">
+        <%- include ('../partials/nav') %>
+        <main class="home-detail-main">
+            <section class="home-detail-hero">
+                <h1 class="home-detail-title">Home Details</h1>
+                <p class="home-detail-subtitle">Complete information about this property</p>
+            </section>
+
+            <section class="home-detail-container">
+                <div class="home-detail-card">
+                    <% if (home.photo) { %>
+                        <div class="home-detail-image-wrapper">
+                            <img 
+                                src="<%= home.photo %>" 
+                                alt="<%= home.houseName %>" 
+                                class="home-detail-image"
+                            />
+                        </div>
+                    <% } %>
+
+                    <div class="home-detail-content">
+                        <h2 class="home-detail-name"><%= home.houseName %></h2>
+                        
+                        <% if (home.location || home.locationName) { %>
+                            <p class="home-detail-location">
+                                📍 <%= home.locationName %> <% if (home.location) { %><span>, <%= home.location %></span><% } %>
+                            </p>
+                        <% } %>
+
+                        <% if (home.description) { %>
+                            <div class="home-detail-description-box">
+                                <h3 class="home-detail-section-title">About this home</h3>
+                                <p class="home-detail-description"><%= home.description %></p>
+                            </div>
+                        <% } %>
+
+                        <div class="home-detail-info-grid">
+                            <div class="home-detail-info-item">
+                                <span class="info-label">Price per Night</span>
+                                <span class="info-value">₹<%= home.pricePerNight %></span>
+                            </div>
+                            <% if (home.rating) { %>
+                                <div class="home-detail-info-item">
+                                    <span class="info-label">Rating</span>
+                                    <span class="info-value">⭐ <%= home.rating %> / 5</span>
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <div class="home-detail-actions">
+                            <%- include ('../partials/favourites') %>
+                            <a href="/homes" class="btn-back">← Back to Listings</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
